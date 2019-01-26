@@ -1,2 +1,2 @@
 # Processamento e Geração de Imagem
-Processamento de criação de imagens usando o PHP e algumas libraries 
+Processamento e criação de imagens usando o PHP e algumas libraries 
