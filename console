@@ -2,12 +2,21 @@
 
 <?php
 
-// var_dump($argc);
-// var_dump($argv);
-// docker-compose run cli php -f teste.php nome=franciso idade=19
+// docker-compose run cli php console arg1=value01 arg2=value02
 
-$input = function($params, $number_params)
-{
+if ($argc == 1) echo "Welcome to console" ."\n". "Usage console command help: php console --help|-h". "\n";
+
+$command_help = function($params) {
+	foreach ($params as $key => $value) {
+		if ($value == "--help" || $value == "-h") {
+			return true;
+		}
+	}
+
+	return false;
+};
+
+$input = function($params, $number_params) {
 	$arr = [];
 
 	for ($i = 1; $i < $number_params; $i++) { 
@@ -17,8 +26,8 @@ $input = function($params, $number_params)
 	return $arr;
 };
 
-print_r($input($argv, $argc));
-
-echo "\ndeu bom!\n";
+if ($command_help($argv)) {
+	echo "list all commands console \n";
+}
 
 ?>
