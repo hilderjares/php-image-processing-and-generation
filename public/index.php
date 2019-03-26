@@ -1,30 +1,42 @@
 <?php
 
-require __DIR__ . '../vendor/autoload.php';
+/*
+/Ativa verificação de tipos 
+*/
+declare(strict_types=1);
 
-// Mostra todos os erros, 0 para desativar todos
-error_reporting(-1);		
+/*
+/ Mostra todos os erros, 0 para desativar todos
+*/
+error_reporting(E_ALL);
+ini_set('display_errors', "1");
 
+
+// include Composer's autoloader
+$vendor = __DIR__.'/../vendor/autoload.php'; 
+
+if (!file_exists($vendor)) {
+    throw new RuntimeException('Install dependencies to run this script.');
+}
+
+require_once $vendor;
 
 use Spatie\ImageOptimizer\OptimizerChainFactory;
-/*
-use Imagine\Image\Box;
-use Imagine\Image\Point;
-use Imagine\Image\ImageInterface;
 
-$imagine = new Imagine\Imagick\Imagine();
-$image = $imagine->open('public/images/rapadura.jpg');
+print_arr(gd_info());
 
-$image->resize(new Box(100, 100))
-   ->rotate(180)
-   ->crop(new Point(0, 0), new Box(150, 150))
-   ->save('public/images/new_rapadura.jpg');
-*/
+$date = ((new DateTime())->format('u'));
 
+$pathImage = "images/nasa.jpg";
+$pathNewImage = "images/compressed/nasa_compressed${date}.jpg";
 
-echo 'wallpaper.jpg' . ': ' . filesize('images/original.jpg') . ' bytes <br>';
+printf("<p> %s : %f bytes </p>", $pathImage, filesize($pathImage));
 
 $optimizerChain = OptimizerChainFactory::create();
-$optimizerChain->optimize('public/images/wallpaper.jpg');
 
-echo 'wallpaper.jpg' . ': ' . filesize('images/wallpaper.jpg') . ' bytes <br>';
+$optimizerChain->optimize($pathImage, $pathNewImage);
+
+printf("<p> %s : %f bytes </p>", $pathNewImage, filesize($pathNewImage));
+
+$compressed = compress_image($pathImage, $pathNewImage, 60); 
+echo $compressed;

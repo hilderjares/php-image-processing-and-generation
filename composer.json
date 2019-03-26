@@ -9,14 +9,15 @@
     ],
     "require": {
         "imagine/imagine": "^1.2",
-        "spatie/image-optimizer": "^1.1"
+        "spatie/image-optimizer": "^1.1",
+        "monolog/monolog": "dev-master"
     },
     "autoload": {
         "psr-4": {
             "Megadeth\\": "src/"
         },
     	"files": [
-    		"functions.php"
+    		"src/functions.php"
     	]
     }
 }

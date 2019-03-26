@@ -2,7 +2,22 @@
 FROM alpine:3.8 as base
 
 RUN apk update \
-&&  apk add php7 php7-zip php7-xml php7-curl php7-pdo_mysql php7-json php7-tokenizer php7-mbstring php7-iconv php7-gd php7-fileinfo php7-session php7-gd
+&&  apk add php7 php7-zip php7-xml php7-curl php7-pdo_mysql php7-json php7-tokenizer php7-mbstring php7-iconv php7-gd php7-fileinfo php7-session php7-gd 
+
+RUN apk update \ 
+&& apk add \ 
+libstdc++ \
+jpegoptim \
+optipng \
+pngquant \
+gifsicle \
+libpng \
+libjpeg-turbo \
+curl \
+libjpeg-turbo-dev \ 
+nodejs 
+
+#RUN npm install -g svgo
 
 
 #DEPENDENCIES
@@ -27,6 +42,6 @@ COPY --from=dependencies /app /app
 
 WORKDIR /app
 
-CMD php -S 0.0.0.0:80 -t /app/public/
+CMD php -S 0.0.0.0:80 -t /app/public
 
 EXPOSE 80
