@@ -1,0 +1,24 @@
+#!/usr/bin/env php
+
+<?php
+
+// var_dump($argc);
+// var_dump($argv);
+// docker-compose run cli php -f teste.php nome=franciso idade=19
+
+$input = function($params, $number_params)
+{
+	$arr = [];
+
+	for ($i = 1; $i < $number_params; $i++) { 
+		$parsed = explode('=', $params[$i]);
+		$arr[$parsed[0]] = $parsed[1];
+	}
+	return $arr;
+};
+
+print_r($input($argv, $argc));
+
+echo "\ndeu bom!\n";
+
+?>

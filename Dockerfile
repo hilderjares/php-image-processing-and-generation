@@ -27,6 +27,6 @@ COPY --from=dependencies /app /app
 
 WORKDIR /app
 
-CMD php -S 0.0.0.0:80 -t /app/
+CMD php -S 0.0.0.0:80 -t /app/public/
 
 EXPOSE 80

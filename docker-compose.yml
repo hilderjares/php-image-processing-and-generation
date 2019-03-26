@@ -3,6 +3,7 @@ version: "3.4"
 services:
   cli:
     container_name: php-cli
+    command: "composer update"
     build:
       context: .
       target: cli
