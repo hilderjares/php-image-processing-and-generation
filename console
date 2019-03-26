@@ -2,7 +2,7 @@
 
 <?php
 
-// docker-compose run cli php console arg1=value01 arg2=value02
+// docker-compose run cli php console --help or -h
 
 if ($argc == 1) echo "Welcome to console" ."\n". "Usage console command help: php console --help|-h". "\n";
 
